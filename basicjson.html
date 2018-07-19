@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h4>JSON  content into JavaScript</h4>
+<button type="button" onclick="loadDoc()">Click button</button>
+<br>
+Name: <div id='name'></div>
+Qualification: <div id='Qualification'></div>
+Organization: <div id='Organization'></div>
+</div>
+
+<script>
+function loadDoc(){
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    	var obj = JSON.parse(this.responseText);
+    	console.log(obj);
+        document.getElementById("name").innerHTML =obj.name;
+        document.getElementById("Qualification").innerHTML =obj.Qualification;
+        document.getElementById("Organization").innerHTML =obj.Organization;
+    	
+
+    	//document.getElementById("demo").innerHTML=this.responseText;
+        //console.log(obj);
+        
+    
+	}
+	
+ 	}  
+	xmlhttp.open("GET","http://localhost:8080/ServeletExpeiments/JsonServlet", true);
+	xmlhttp.send();
+};
+</script>
+</body>
+</html>
